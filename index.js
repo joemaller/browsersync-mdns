@@ -1,8 +1,8 @@
 const chalk = require('chalk');
 const mdns = require('mdns');
-const pkg = readPkgUp({ normalize: false }).pkg;
 const readPkgUp = require('read-pkg-up').sync;
 
+const pkg = readPkgUp({ normalize: false }).pkg;
 const pluginName = 'Browsersync mDNS';
 
 module.exports = {
