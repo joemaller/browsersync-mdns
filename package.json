@@ -4,7 +4,10 @@
   "description": "Announce Browsersync instances with mDNS (zeroconf/bonjour)",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "nyc mocha",
+    "test-watch": "mocha -w",
+    "coverage": "nyc report --reporter=text-lcov | coveralls",
+    "version": "version-everything README.md && git add -u"
   },
   "keywords": [
     "mdns",
@@ -19,7 +22,16 @@
     "mdns": "^2.3.3",
     "read-pkg-up": "^2.0.0"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "coveralls": "^2.13.0",
+    "mocha": "^3.2.0",
+    "nyc": "^10.2.0",
+    "proxyquire": "^1.7.11",
+    "sinon": "^2.1.0",
+    "sinon-chai": "^2.9.0",
+    "version-everything": "^0.1.1"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joemaller/browsersync-mdns.git"
