@@ -19,8 +19,8 @@ addons:
     - libavahi-compat-libdnssd-dev
     # - libnss-mdns
     # - libssp-dev
-    # - ubuntu-toolchain-r-test
-    # packages:
-    # - g++-5
-# env:
-#   - CXX=g++-5
+    - ubuntu-toolchain-r-test
+    packages:
+    - g++-5
+env:
+  - CXX=g++-5
