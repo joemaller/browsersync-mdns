@@ -45,15 +45,15 @@ browserSync.init({
   plugins: [{
     module: 'browsersync-mdns',
     options: {
-      name2: 'Local Dev Site'
+      name: 'Local Dev Site'
     }
   }]
 });
 ```
-See the [Browsersync plugins documentation][plugin-docs] for another example.
+See the [Browsersync plugins documentation][plugin-docs] for other plugin configuration examples.
 
 
-If `options.name` isn't defined and a **package.json** file can't be found,  the hostname will be used as a fallback. 
+If `options.name` isn't defined and a **package.json** file can't be found, the hostname will be used as a fallback. 
 
 
 
