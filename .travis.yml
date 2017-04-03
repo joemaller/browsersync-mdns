@@ -11,12 +11,14 @@ node_js:
   - '4'
   
 sudo: required
-# before_install:
-#   - npm install -g node-gyp
+before_install:
+  - npm install -g node-gyp
 addons:
   apt:
     sources:
     - libavahi-compat-libdnssd-dev
+    # - libnss-mdns
+    # - libssp-dev
     # - ubuntu-toolchain-r-test
     # packages:
     # - g++-5
