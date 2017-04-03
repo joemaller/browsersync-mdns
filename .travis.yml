@@ -18,11 +18,7 @@ before_install:
 addons:
   apt:
     sources:
-    # - libnss-mdns
-    # - libssp-dev
     - ubuntu-toolchain-r-test
     packages:
     - g++-5
     - libavahi-compat-libdnssd-dev
-# env:
-#   - 
