@@ -16,11 +16,11 @@ before_install:
 addons:
   apt:
     sources:
-    - libavahi-compat-libdnssd-dev
     # - libnss-mdns
     # - libssp-dev
     - ubuntu-toolchain-r-test
     packages:
+    - libavahi-compat-libdnssd-dev
     - g++-5
 env:
   - CXX=g++-5
