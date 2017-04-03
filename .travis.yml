@@ -20,7 +20,7 @@ addons:
     # - libssp-dev
     - ubuntu-toolchain-r-test
     packages:
-    - libavahi-compat-libdnssd-dev
     - g++-5
+    - libavahi-compat-libdnssd-dev
 env:
   - CXX=g++-5
