@@ -7,6 +7,10 @@ Advertise [Browsersync][] instances over mDNS (bonjour/zeroconf/avahi)
 [![dependencies Status](https://david-dm.org/joemaller/browsersync-mdns/status.svg)](https://david-dm.org/joemaller/browsersync-mdns)
 [![devDependencies Status](https://david-dm.org/joemaller/browsersync-mdns/dev-status.svg)](https://david-dm.org/joemaller/browsersync-mdns?type=dev)
 
+## What it does
+
+The Browsersync-mDNS plugin advertises the current Browsersync instance over multicast Bonjour. This makes it fast and easy to connect from other test devices regardless of dynamic IP addresses, `*.local` support or whatever.
+
 
 ## Installation
 
