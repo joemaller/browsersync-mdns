@@ -7,7 +7,7 @@ const chai = require('chai');
 const sinon = require('sinon');
 const sinonChai = require('sinon-chai');
 
-const { Map } = require('immutable');
+const Map = require('immutable').Map;
 const EventEmitter = require('events');
 
 chai.should();
