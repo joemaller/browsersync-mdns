@@ -27,24 +27,20 @@ function logAdvertisement(name, bs) {
   const urls = bs.options.get('urls').toJS();
   const keys = Object.keys(urls);
   let longestName = 0;
-  let longesturl = 0;
+  let longestUrl = 0;
   const offset = 2;
   let label = 'mDNS Name';
 
 
   keys.map(function (key) {
-    if (key.length > longestName) {
-      longestName = key.length;
-    }
-    if (urls[key].length > longesturl) {
-      longesturl = urls[key].length;
-    }
+    longestName = Math.max(key.length, longestName);
+    longestUrl = Math.max(urls[key].length, longestUrl);
     return key;
   });
 
   label = (label.length < longestName) ? label : label.split()[0];
 
-  const line = new Array(longestName + offset + longesturl + 1).join('-');
+  const line = new Array(longestName + offset + longestUrl + 1).join('-');
 
   bs.logger.info('{bold:Advertising:}');
   bs.logger.unprefixed('info', '{grey: %s}', line);
