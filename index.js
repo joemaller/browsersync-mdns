@@ -1,26 +1,26 @@
-'use strict';
+"use strict";
 
-const os = require('os');
-const http = require('http');
+const os = require("os");
+const http = require("http");
 
-const readPkgUp = require('read-pkg-up').sync;
-const portscanner = require('portscanner');
+const readPkgUp = require("read-pkg-up").sync;
+const portscanner = require("portscanner");
 
 const pkg = readPkgUp({ normalize: false }).pkg;
-const pluginName = 'Browsersync mDNS';
+const pluginName = "Browsersync mDNS";
 
-const mDNSAdvertise = require('./lib/mdns-advert');
-const logAdvert = require('./lib/log-advert');
+const mDNSAdvertise = require("./lib/mdns-advert");
+const logAdvert = require("./lib/log-advert");
 
 module.exports = {
-  'plugin:name': pluginName,
+  "plugin:name": pluginName,
   plugin: function(options, browsersync) {
     const displayName = options.name || pkg.name || os.hostname();
-    const external = browsersync.options.get('urls').get('external');
-    const scheme = browsersync.options.get('scheme');
-    const port = browsersync.options.get('port');
+    const external = browsersync.options.get("urls").get("external");
+    const scheme = browsersync.options.get("scheme");
+    const port = browsersync.options.get("port");
     if (external) {
-      if (scheme === 'https') {
+      if (scheme === "https") {
         const redirector = http.createServer((req, res) => {
           res.writeHead(302, { Location: external });
           res.end();
@@ -36,7 +36,7 @@ module.exports = {
         mDNSAdvertise(port, displayName);
       }
       const logger = logAdvert.bind(null, displayName, browsersync);
-      browsersync.emitter.on('service:running', logger);
+      browsersync.emitter.on("service:running", logger);
     }
   }
 };
