@@ -4,6 +4,7 @@ Advertise [Browsersync][] instances over mDNS (bonjour/zeroconf/avahi)
 [![Build Status](https://travis-ci.org/joemaller/browsersync-mdns.svg?branch=master)](https://travis-ci.org/joemaller/browsersync-mdns) 
 [![Coverage Status](https://coveralls.io/repos/github/joemaller/browsersync-mdns/badge.svg?branch=master)](https://coveralls.io/github/joemaller/browsersync-mdns?branch=master) 
 [![npm](https://img.shields.io/npm/v/browsersync-mdns.svg)](https://www.npmjs.com/package/browsersync-mdns)
+[![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
 [![dependencies Status](https://david-dm.org/joemaller/browsersync-mdns/status.svg)](https://david-dm.org/joemaller/browsersync-mdns)
 [![devDependencies Status](https://david-dm.org/joemaller/browsersync-mdns/dev-status.svg)](https://david-dm.org/joemaller/browsersync-mdns?type=dev)
 
@@ -61,7 +62,7 @@ If `options.name` isn't defined and a **package.json** file can't be found, the 
 
 ## Related Plugins & Tools
 
-For browsing mDNS/Bonjour services on Android and iOS, I've been using Tomoaki Takeda's (parKhang CyungCyung's?) [BonjourSearch][bs] app ([Android][bsa], [iOS][bsi]). It's a free, barebones app that does one simple thing really well. I haven't found a functional equivalent for Windows.
+[<img src="https://cloud.githubusercontent.com/assets/8320/25558683/aaad2ac8-2cf9-11e7-9d82-eb11f735caf8.png" align="left" height="90" style="float: left; margin-right: 1em;">][bs] For browsing mDNS/Bonjour services on Android and iOS, I've been using Tomoaki Takeda's (parKhang CyungCyung's?) [BonjourSearch][bs] app ([Android][bsa], [iOS][bsi]). It's a free, barebones app that does one simple thing really well. I haven't yet found a functional equivalent for Windows.
 
 This project was partly inspired by stephenfri's [bs-console-qrcode][] project, which prints a QR code linking to the current Browsersync instance directly in the terminal (and browser console).
 

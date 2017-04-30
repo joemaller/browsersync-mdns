@@ -1,49 +1,42 @@
 'use strict';
 
 const os = require('os');
-const leftPad = require('left-pad');
-const mdns = require('mdns');
+const http = require('http');
+
 const readPkgUp = require('read-pkg-up').sync;
+const portscanner = require('portscanner');
 
 const pkg = readPkgUp({ normalize: false }).pkg;
 const pluginName = 'Browsersync mDNS';
+
+const mDNSAdvertise = require('./lib/mdns-advert');
+const logAdvert = require('./lib/log-advert');
 
 module.exports = {
   'plugin:name': pluginName,
   plugin: function(options, browsersync) {
     const displayName = options.name || pkg.name || os.hostname();
+    const external = browsersync.options.get('urls').get('external');
+    const scheme = browsersync.options.get('scheme');
+    const port = browsersync.options.get('port');
+    if (external) {
+      if (scheme === 'https') {
+        const redirector = http.createServer((req, res) => {
+          res.writeHead(302, { Location: external });
+          res.end();
+        });
 
-    mdns.createAdvertisement(mdns.tcp('http'), browsersync.options.get('port'), {
-      name: displayName
-    });
+        portscanner.findAPortNotInUse(port + 1000, function(err, httpPort) {
+          if (err) throw err;
+          redirector.listen(httpPort);
 
-    browsersync.emitter.on('service:running', function() {
-      logAdvertisement(displayName, browsersync);
-    });
+          mDNSAdvertise(httpPort, displayName);
+        });
+      } else {
+        mDNSAdvertise(port, displayName);
+      }
+      const logger = logAdvert.bind(null, displayName, browsersync);
+      browsersync.emitter.on('service:running', logger);
+    }
   }
 };
-
-function logAdvertisement(name, bs) {
-  const urls = bs.options.get('urls').toJS();
-  const keys = Object.keys(urls);
-  let longestName = 0;
-  let longestUrl = 0;
-  const offset = 2;
-  let label = 'mDNS Name';
-
-
-  keys.map(function (key) {
-    longestName = Math.max(key.length, longestName);
-    longestUrl = Math.max(urls[key].length, longestUrl);
-    return key;
-  });
-
-  label = (label.length < longestName) ? label : label.split()[0];
-
-  const line = new Array(longestName + offset + longestUrl + 1).join('-');
-
-  bs.logger.info('{bold:Advertising:}');
-  bs.logger.unprefixed('info', '{grey: %s}', line);
-  bs.logger.unprefixed('info', ' %s: {magenta:%s}', leftPad(label, longestName), name);
-  bs.logger.unprefixed('info', '{grey: %s}', line);
-}

@@ -25,7 +25,7 @@ const bsUrlShort = { external: 'http://localhost:3000' }; // key: 8 chars, value
 const bsUrlLong = { a_much_longer_key: 'https://a-very-long-example-url:3001'};
 const bsUrls = Object.assign({}, bsUrlShort, bsUrlLong);
 
-describe('Browsersync mDNS plugin', function() {
+describe('Browsersync mDNS Logger', function() {
 
   beforeEach(function() {
     this.mdns = sinon.stub(mdns, 'createAdvertisement');
@@ -38,7 +38,7 @@ describe('Browsersync mDNS plugin', function() {
 
     // const createServer = function
 
-    this.server = sinon.stub(http, 'createServer')
+    this.server = sinon.stub(http, 'createServer');
     this.bs = {
       logger: {info: sinon.spy(), unprefixed: sinon.spy()},
       options: Map({ port: 3000, urls: Map(bsUrls), scheme: 'http' }),
@@ -61,67 +61,22 @@ describe('Browsersync mDNS plugin', function() {
     this.mdns.reset();
   });
 
-  it('has a name', function() {
-    this.bsmdns.should.have.property('plugin:name', 'Browsersync mDNS');
-  });
+  it('should use a short label');
+  it('should use the full label');
 
-  it('exports a plugin', function() {
-    this.bsmdns.should.have.property('plugin').that.is.a('function');
-  });
-
-  it('should advertise a service', function() {
+  it('should log underlines to match length of Browsersync Access Urls', function() {
+    this.bs.options = Map({port: 3000, urls: Map(bsUrlShort)});
     this.bsmdns.plugin({}, this.bs);
     this.bs.emitter.emit('service:running');
-    this.bs.logger.info.should.have.been.called;
-    this.bs.logger.unprefixed.should.have.been.called;
-    this.mdns.firstCall.args.should.contain(3000);
-  });
 
-  it('should not advertise without a network connection', function() {
     this.bs.options = Map({port: 3000, urls: Map(bsUrlLong)});
     this.bsmdns.plugin({}, this.bs);
     this.bs.emitter.emit('service:running');
-    this.bs.logger.info.should.not.have.been.called;
-    this.bs.logger.unprefixed.should.not.have.been.called;
-  });
 
-  it('should use the provided port', function() {
-    const port = 5000;
-    this.bs.options = Map({port: port, urls: Map(bsUrls)});
-    this.bsmdns.plugin({}, this.bs);
-    this.mdns.args.should.have.deep.property('[0][1]', port);
-  });
-
-  it('should use a custom name', function() {
-    const name = 'yogi';
-    const opts = {name: name};
-    this.bsmdns.plugin(opts, this.bs);
-    this.mdns.args.should.have.deep.property('[0][2].name', name);
-  });
-
-  it('should use http', function() {
-    this.bsmdns.plugin({}, this.bs);
-    this.server.should.not.have.been.called;
-  });
-
-
-  it('should use the name from package.json', function() {
-    this.bsmdns.plugin({}, this.bs);
-    this.mdns.args.should.have.deep.property('[0][2].name', 'package.json');
-  });
-
-  it('should fallback to the hostname', function() {
-    const hostname = 'test-hostname.dev';
-    const rpu = this.readPkgUp.returns({pkg: {}});
-    this.os.returns(hostname);
-
-    var bsmdns = proxyquire('../', {
-      'mdns': this.mdns,
-      'os': this.os,
-      'read-pkg-up': rpu
-    });
-    bsmdns.plugin({}, this.bs);
-
-    this.mdns.args.should.have.deep.property('[0][2].name', hostname);
+    this.bs.logger.info.should.have.been.called;
+    this.bs.logger.unprefixed.getCall(0).args[2].should.have.lengthOf(31);
+    this.bs.logger.unprefixed.getCall(0).args[2].should.be.string('----------------------------');
+    this.bs.logger.unprefixed.getCall(3).args[2].should.have.lengthOf(55);
+    this.bs.logger.unprefixed.getCall(3).args[2].should.be.string('-------------------------------------------------------');
   });
 });

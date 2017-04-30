@@ -15,7 +15,6 @@ module.exports = {
     'no-console': 'warn',
     'indent': ['error', 2 ],
     'linebreak-style': ['error', 'unix'],
-    'quotes': ['error', 'single', { allowTemplateLiterals: true }],
     'semi': ['error', 'always']
   }
 };
