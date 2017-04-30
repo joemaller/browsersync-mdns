@@ -31,19 +31,12 @@ describe("Browsersync mDNS Logger", function() {
     this.readPkgUp = sinon.stub(readPkgUp, "sync").returns(pkg);
     this.os = sinon.stub(os, "hostname");
     this.findPort = sinon.stub(portscanner, "findAPortNotInUse");
-    // this.listen = sinon.stub(http.createServer(), 'listen');
-    // this.server = sinon.mock(http.createServer);
-    // this.server.expects('listen');
-
-    // const createServer = function
-
     this.server = sinon.stub(http, "createServer");
     this.bs = {
       logger: { info: sinon.spy(), unprefixed: sinon.spy() },
       options: Map({ port: 3000, urls: Map(bsUrls), scheme: "http" }),
       emitter: new EventEmitter()
     };
-    // this.bs.options.set('urls', bsUrls);
     this.bsmdns = proxyquire("../", {
       mdns: this.mdns,
       "read-pkg-up": this.readPkgUp
@@ -60,8 +53,22 @@ describe("Browsersync mDNS Logger", function() {
     this.mdns.reset();
   });
 
-  it("should use a short label");
-  it("should use the full label");
+  it("should use a short label", function() {
+    this.bs.options = Map({ port: 3000, urls: Map(bsUrlShort) });
+    this.bsmdns.plugin({}, this.bs);
+    this.bs.emitter.emit("service:running");
+    this.bs.logger.unprefixed.getCall(1).args[2].trim().should.equal("mDNS");
+  });
+
+  it("should use the full label", function() {
+    this.bs.options = Map({ port: 3000, urls: Map(bsUrls) });
+    this.bsmdns.plugin({}, this.bs);
+    this.bs.emitter.emit("service:running");
+    this.bs.logger.unprefixed
+      .getCall(1)
+      .args[2].trim()
+      .should.equal("mDNS Name");
+  });
 
   it("should log underlines to match length of Browsersync Access Urls", function() {
     this.bs.options = Map({ port: 3000, urls: Map(bsUrlShort) });
