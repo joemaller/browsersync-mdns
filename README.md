@@ -1,12 +1,15 @@
 # Browsersync-mDNS
+#### Version: 0.2.0
 Advertise [Browsersync][] instances over mDNS (bonjour/zeroconf/avahi)
 
+[![npm](https://img.shields.io/npm/v/browsersync-mdns.svg)](https://www.npmjs.com/package/browsersync-mdns)
+[![dependencies Status](https://img.shields.io/david/joemaller/browsersync-mdns.svg?label=deps)](https://david-dm.org/joemaller/browsersync-mdns)
+[![devDependencies Status](https://img.shields.io/david/dev/joemaller/browsersync-mdns.svg?label=devDeps)](https://david-dm.org/joemaller/browsersync-mdns?type=dev)
+<br>
 [![Build Status](https://travis-ci.org/joemaller/browsersync-mdns.svg?branch=master)](https://travis-ci.org/joemaller/browsersync-mdns) 
 [![Coverage Status](https://coveralls.io/repos/github/joemaller/browsersync-mdns/badge.svg?branch=master)](https://coveralls.io/github/joemaller/browsersync-mdns?branch=master) 
-[![npm](https://img.shields.io/npm/v/browsersync-mdns.svg)](https://www.npmjs.com/package/browsersync-mdns)
+<br>
 [![styled with prettier](https://img.shields.io/badge/styled_with-prettier-ff69b4.svg)](https://github.com/prettier/prettier)
-[![dependencies Status](https://david-dm.org/joemaller/browsersync-mdns/status.svg)](https://david-dm.org/joemaller/browsersync-mdns)
-[![devDependencies Status](https://david-dm.org/joemaller/browsersync-mdns/dev-status.svg)](https://david-dm.org/joemaller/browsersync-mdns?type=dev)
 
 ## What it does
 
@@ -15,9 +18,8 @@ The Browsersync-mDNS plugin advertises the current Browsersync instance over mul
 
 ## Installation
 
-This is still pre-release, so install directly from GitHub:
-```
-npm install joemaller/browsersync-mdns
+```sh
+$ npm install --save-dev browsersync-mdns
 ```
 
 ## Basic usage
@@ -25,7 +27,7 @@ npm install joemaller/browsersync-mdns
 #### Code
 
 Add Browsersync-mDNS to the Browsersync init block's plugins array and the instance will be advertised when Browsersync starts up. 
-```
+```js
 browserSync.init({
   plugins: ['browsersync-mdns']
 });
@@ -34,7 +36,7 @@ browserSync.init({
 #### Command Line
 
 Include `--plugins browsersync-mdns` in your browsersync command:
-```
+```sh
 browser-sync start -s app --plugins browsersync-mdns
 ```
 
@@ -45,7 +47,7 @@ Note that both Browsersync and this plugin will need to be installed globally.
 In most cases, Browsersync-mDNS will advertise the current instance using the `name` value from **package.json**. 
 
 To use a specific name instead, define the plugin using an object. 
-```
+```js
 browserSync.init({
   plugins: [{
     module: 'browsersync-mdns',

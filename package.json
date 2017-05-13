@@ -9,6 +9,7 @@
     "coverage": "nyc report --reporter=text-lcov | coveralls",
     "version": "version-everything README.md && git add -u"
   },
+  "version_files": ["README.md"],
   "keywords": [
     "mdns",
     "browsersync",
@@ -33,7 +34,7 @@
     "proxyquire": "^1.7.11",
     "sinon": "^2.1.0",
     "sinon-chai": "^2.9.0",
-    "version-everything": "^0.1.1"
+    "version-everything": "^0.1.2"
   },
   "repository": {
     "type": "git",
