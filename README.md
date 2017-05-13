@@ -1,5 +1,5 @@
 # Browsersync-mDNS
-#### Version: 0.2.0
+#### Version: 1.0.0
 Advertise [Browsersync][] instances over mDNS (bonjour/zeroconf/avahi)
 
 [![npm](https://img.shields.io/npm/v/browsersync-mdns.svg)](https://www.npmjs.com/package/browsersync-mdns)
