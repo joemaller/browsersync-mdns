@@ -88,14 +88,14 @@ describe("Browsersync mDNS plugin", function() {
     const port = 5000;
     this.bs.options = Map({ port: port, urls: Map(bsUrls) });
     this.bsmdns.plugin({}, this.bs);
-    this.mdns.args.should.have.deep.property("[0][1]", port);
+    this.mdns.args.should.have.nested.property("[0][1]", port);
   });
 
   it("should use a custom name", function() {
     const name = "yogi";
     const opts = { name: name };
     this.bsmdns.plugin(opts, this.bs);
-    this.mdns.args.should.have.deep.property("[0][2].name", name);
+    this.mdns.args.should.have.nested.property("[0][2].name", name);
   });
 
   it("should use http", function() {
@@ -105,7 +105,7 @@ describe("Browsersync mDNS plugin", function() {
 
   it("should use the name from package.json", function() {
     this.bsmdns.plugin({}, this.bs);
-    this.mdns.args.should.have.deep.property("[0][2].name", "package.json");
+    this.mdns.args.should.have.nested.property("[0][2].name", "package.json");
   });
 
   it("should fallback to the hostname", function() {
@@ -120,6 +120,6 @@ describe("Browsersync mDNS plugin", function() {
     });
     bsmdns.plugin({}, this.bs);
 
-    this.mdns.args.should.have.deep.property("[0][2].name", hostname);
+    this.mdns.args.should.have.nested.property("[0][2].name", hostname);
   });
 });
