@@ -43,6 +43,7 @@ jobs:
 
       - run: mkdir ~/junit
       - run: sudo npm install -g mocha
+      - run: npm install mocha-junit-reporter
       - run:
           command: mocha test --reporter mocha-junit-reporter
           environment:
