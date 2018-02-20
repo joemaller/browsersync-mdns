@@ -40,16 +40,16 @@ jobs:
       - run: npm test
 
 
-
-      - run: mkdir ~/junit
-      - run: sudo npm install -g mocha
-      - run: npm install mocha-junit-reporter
-      - run:
-          command: mocha test --reporter mocha-junit-reporter
-          environment:
-            MOCHA_FILE: junit/test-results.xml
-          when: always
-      - store_test_results:
-          path: ~/junit
-      - store_artifacts:
-          path: ~/junit          
+      # Messy and not working...
+      # - run: mkdir ~/junit
+      # - run: sudo npm install -g mocha
+      # - run: npm install mocha-junit-reporter
+      # - run:
+      #     command: mocha test --reporter mocha-junit-reporter
+      #     environment:
+      #       MOCHA_FILE: junit/test-results.xml
+      #     when: always
+      # - store_test_results:
+      #     path: ~/junit
+      # - store_artifacts:
+      #     path: ~/junit          
