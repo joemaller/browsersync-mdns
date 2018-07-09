@@ -2,48 +2,54 @@
   "name": "browsersync-mdns",
   "version": "1.0.2",
   "description": "Announce Browsersync instances with mDNS (zeroconf/bonjour)",
-  "main": "index.js",
-  "scripts": {
-    "test": "nyc mocha",
-    "test-watch": "mocha -w",
-    "coverage": "nyc report --reporter=text-lcov | coveralls",
-    "version": "version-everything README.md && git add -u"
-  },
-  "version_files": [
-    "README.md"
-  ],
   "keywords": [
-    "mdns",
+    "bonjour",
     "browsersync",
-    "zeroconf",
-    "bonjour"
+    "mdns",
+    "zeroconf"
   ],
-  "author": "Joe Maller <joe@joemaller.com> (http://www.joemaller.com)",
-  "license": "ISC",
-  "dependencies": {
-    "left-pad": "^1.1.3",
-    "mdns": "^2.3.3",
-    "portscanner": "^2.1.1",
-    "read-pkg-up": "^3.0.0"
-  },
-  "devDependencies": {
-    "browser-sync": "^2.18.8",
-    "chai": "^4.1.2",
-    "coveralls": "^3.0.0",
-    "immutable": "^3.8.1",
-    "mocha": "^5.0.1",
-    "nyc": "^11.1.0",
-    "proxyquire": "^1.7.11",
-    "sinon": "^4.3.0",
-    "sinon-chai": "^2.9.0",
-    "version-everything": "^0.2.2"
+  "homepage": "https://github.com/joemaller/browsersync-mdns#readme",
+  "bugs": {
+    "url": "https://github.com/joemaller/browsersync-mdns/issues"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/joemaller/browsersync-mdns.git"
   },
-  "bugs": {
-    "url": "https://github.com/joemaller/browsersync-mdns/issues"
+  "license": "ISC",
+  "author": "Joe Maller <joe@joemaller.com> (http://www.joemaller.com)",
+  "main": "index.js",
+  "scripts": {
+    "coverage": "jest --coverage",
+    "fake": "browser-sync start --plugins browsersync-mdns",
+    "test": "jest",
+    "test-debug": "node --inspect-brk node_modules/.bin/jest --runInBand",
+    "test-watch": "jest --watch",
+    "version": "version-everything README.md && git add -u"
   },
-  "homepage": "https://github.com/joemaller/browsersync-mdns#readme"
+  "jest": {
+    "coveragePathIgnorePatterns": [
+      "/node_modules/",
+      "/package.json",
+      "/old_tests"
+    ]
+  },
+  "dependencies": {
+    "bonjour": "^3.5.0",
+    "left-pad": "^1.3.0",
+    "nbonjour": "^3.6.1",
+    "portscanner": "^2.2.0",
+    "read-pkg-up": "^4.0.0"
+  },
+  "devDependencies": {
+    "browser-sync": "^2.24.4",
+    "coveralls": "^3.0.1",
+    "immutable": "^3.8.2",
+    "jest": "^23.1.0",
+    "proxyquire": "^2.0.1",
+    "version-everything": "^0.2.2"
+  },
+  "version_files": [
+    "README.md"
+  ]
 }

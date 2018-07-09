@@ -2,13 +2,13 @@
 
 "use strict";
 
-const proxyquire = require("proxyquire");
-const chai = require("chai");
-const sinon = require("sinon");
-const sinonChai = require("sinon-chai");
+// const proxyquire = require("proxyquire");
+// const chai = require("chai");
+// const sinon = require("sinon");
+// const sinonChai = require("sinon-chai");
 
-chai.should();
-chai.use(sinonChai);
+// chai.should();
+// chai.use(sinonChai);
 
 const Map = require("immutable").Map;
 const EventEmitter = require("events");
@@ -27,40 +27,41 @@ const bsUrls = Object.assign({}, bsUrlShort, bsUrlLong);
 
 describe("Browsersync mDNS plugin", function() {
   beforeEach(function() {
-    this.mdns = sinon.stub(mdns, "createAdvertisement");
-    this.readPkgUp = sinon.stub(readPkgUp, "sync").returns(pkg);
-    this.os = sinon.stub(os, "hostname");
-    this.findPort = sinon.stub(portscanner, "findAPortNotInUse");
+    // this.mdns = sinon.stub(mdns, "createAdvertisement");
+    // this.readPkgUp = sinon.stub(readPkgUp, "sync").returns(pkg);
+    // this.os = sinon.stub(os, "hostname");
+    // this.findPort = sinon.stub(portscanner, "findAPortNotInUse");
     // this.listen = sinon.stub(http.createServer(), 'listen');
     // this.server = sinon.mock(http.createServer);
     // this.server.expects('listen');
 
     // const createServer = function
 
-    this.server = sinon.stub(http, "createServer");
-    this.bs = {
-      logger: { info: sinon.spy(), unprefixed: sinon.spy() },
-      options: Map({ port: 3000, urls: Map(bsUrls), scheme: "http" }),
-      emitter: new EventEmitter()
-    };
-    // this.bs.options.set('urls', bsUrls);
-    this.bsmdns = proxyquire("../", {
-      mdns: this.mdns,
-      "read-pkg-up": this.readPkgUp
-    });
+    // this.server = sinon.stub(http, "createServer");
+    // this.bs = {
+    //   logger: { info: sinon.spy(), unprefixed: sinon.spy() },
+    //   options: Map({ port: 3000, urls: Map(bsUrls), scheme: "http" }),
+    //   emitter: new EventEmitter()
+    // };
+    // // this.bs.options.set('urls', bsUrls);
+    // this.bsmdns = proxyquire("../", {
+    //   mdns: this.mdns,
+    //   "read-pkg-up": this.readPkgUp
+    // });
   });
 
   afterEach(function() {
-    this.mdns.restore();
-    this.readPkgUp.restore();
-    this.os.restore();
-    this.findPort.restore();
-    this.server.restore();
-    this.os.reset();
-    this.mdns.reset();
+    // this.mdns.restore();
+    // this.readPkgUp.restore();
+    // this.os.restore();
+    // this.findPort.restore();
+    // this.server.restore();
+    // this.os.reset();
+    // this.mdns.reset();
   });
 
   it("has a name", function() {
+    expect
     this.bsmdns.should.have.property("plugin:name", "Browsersync mDNS");
   });
 
