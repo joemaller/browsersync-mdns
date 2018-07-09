@@ -49,6 +49,9 @@
     "proxyquire": "^2.0.1",
     "version-everything": "^0.2.2"
   },
+  "engines": {
+    "node": ">=8"
+  },
   "version_files": [
     "README.md"
   ]

@@ -1,24 +1,6 @@
-os:
-  - linux
-  - osx
-
 after_success: npm run coverage
 
 language: node_js
 node_js:
   - 'node'
-  - '6'
-  - '4'
-  
-sudo: required
-before_install:
-  - npm install -g node-gyp
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then export CXX=g++-5; fi
-
-addons:
-  apt:
-    sources:
-    - ubuntu-toolchain-r-test
-    packages:
-    - g++-5
-    - libavahi-compat-libdnssd-dev
+  - '8'
