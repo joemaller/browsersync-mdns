@@ -1,6 +1,6 @@
 # Browsersync-mDNS
 
-#### Version: 1.0.2
+#### Version: 1.1.0
 
 Advertise [Browsersync][] instances over mDNS (bonjour/zeroconf/avahi)
 

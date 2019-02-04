@@ -1,6 +1,6 @@
 {
   "name": "browsersync-mdns",
-  "version": "1.0.2",
+  "version": "1.1.0",
   "description": "Announce Browsersync instances with mDNS (zeroconf/bonjour)",
   "keywords": [
     "bonjour",
