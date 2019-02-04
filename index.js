@@ -26,7 +26,7 @@ const safeNamePublish = advert => {
   if (!advertClone.hasOwnProperty("basename")) {
     advertClone.basename = advertClone.name;
   }
-  console.log('console to the fucking log', bonjour)
+  console.log('bonjour object', bonjour)
   // console.log(bonjour.publish(advertClone))
   //
   // bonjour.publish(advertClone)

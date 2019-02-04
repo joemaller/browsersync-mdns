@@ -45,7 +45,7 @@
     "browser-sync": "^2.24.4",
     "coveralls": "^3.0.1",
     "immutable": "^3.8.2",
-    "jest": "^23.1.0",
+    "jest": "^24.0.0",
     "proxyquire": "^2.0.1",
     "version-everything": "^0.2.2"
   },

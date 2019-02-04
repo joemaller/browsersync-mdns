@@ -1,5 +1,6 @@
 module.exports = {
   env: {
+    browser: true,
     commonjs: true,
     es6: true,
     node: true
@@ -9,12 +10,10 @@ module.exports = {
     sourceType: "module"
   },
   rules: {
+    "linebreak-style": ["error", "unix"],
+    "no-console": "warn",
     "no-param-reassign": "error",
     "space-before-function-paren": "off",
-    "vars-on-top": "off",
-    "no-console": "warn",
-    indent: ["error", 2],
-    "linebreak-style": ["error", "unix"],
-    semi: ["error", "always"]
+    "vars-on-top": "off"
   }
 };
